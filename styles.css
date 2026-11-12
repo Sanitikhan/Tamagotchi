@@ -1,3 +1,19 @@
+@font-face {
+    font-family: "Pixelify Sans";
+    src: url("assets/fonts/PixelifySans-Regular.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "Pixelify Sans";
+    src: url("assets/fonts/PixelifySans-Bold.ttf") format("truetype");
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -192,24 +208,6 @@ body {
     vertical-align: -0.15em;
 }
 
-@media (max-width: 600px) {
-    .tamagotchi-layout {
-        flex-direction: column;
-        align-items: center;
-        gap: 8px;
-        padding: 12px;
-    }
-
-    .tamagotchi-container {
-        width: 100%;
-    }
-
-    .panel-actions {
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-}
 /* HEADER */
 .tamagotchi-header {
     background-color: #f8f8f8;
@@ -399,4 +397,181 @@ body {
 
 #hunger-bar {
     background-color: #65a765;
+}
+
+@media (max-width: 600px) {
+    .tamagotchi-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "main"
+            "actions";
+        gap: 6px;
+        padding: 8px;
+    }
+
+    .tamagotchi-container {
+        grid-area: main;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "dialog"
+            "pet"
+            "gauges";
+        justify-items: center;
+        gap: 6px;
+    }
+
+    .zone-pet {
+        grid-area: pet;
+        justify-self: center;
+    }
+
+    .dialog-zone {
+        grid-area: dialog;
+        width: min(100%, 400px);
+        height: 64px;
+        margin: 0;
+        padding: 8px;
+        border-radius: 24px;
+    }
+
+    .zone-jauges {
+        grid-area: gauges;
+        width: min(100%, 320px);
+        margin: 0;
+        gap: 4px;
+    }
+
+    .zone-panel {
+        grid-area: actions;
+    }
+
+    .panel-actions {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .action-button {
+        flex: 0 0 calc((100% - 12px) / 3);
+        padding: 7px 4px;
+        font-size: 0.85rem;
+    }
+
+    .action-button svg {
+        width: 1em;
+        height: 1em;
+        margin-right: 3px;
+    }
+
+    .tamagotchi-header {
+        gap: 8px;
+        padding: 10px 8px;
+    }
+
+    .title-header {
+        padding-right: 8px;
+        font-size: 1.4em;
+    }
+
+    .exp-header {
+        font-size: 0.95em;
+    }
+
+    .zone-pet img {
+        width: 120px;
+        height: 120px;
+        margin: 0 auto;
+    }
+
+    .stat-icon {
+        flex-basis: 36px;
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+    }
+
+    .stat-icon svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .stat-track {
+        height: 30px;
+        margin-left: -16px;
+    }
+
+    .stat-bg {
+        inset: 2px;
+    }
+
+    .stat-text {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 600px) and (max-height: 500px) {
+    body {
+        padding: 6px;
+    }
+
+    .tamagotchi-zone {
+        width: calc(100vw - 12px);
+    }
+
+    .tamagotchi-header {
+        padding: 6px;
+    }
+
+    .tamagotchi-layout {
+        gap: 4px;
+        padding: 6px;
+    }
+
+    .tamagotchi-container {
+        gap: 4px;
+    }
+
+    .zone-pet img {
+        width: 84px;
+        height: 84px;
+        margin: 0 auto;
+    }
+
+    .dialog-zone {
+        height: 44px;
+        padding: 4px;
+    }
+
+    .zone-jauges {
+        gap: 4px;
+    }
+
+    .stat-icon {
+        flex-basis: 30px;
+        width: 30px;
+        height: 30px;
+    }
+
+    .stat-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    .stat-track {
+        height: 26px;
+        margin-left: -14px;
+    }
+
+    .action-button {
+        padding: 5px 2px;
+        font-size: 0.75rem;
+    }
+
+    .action-button svg {
+        margin-right: 1px;
+    }
 }
