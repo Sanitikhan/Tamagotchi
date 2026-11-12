@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create your Tamagotchi</title>
+    <link rel="stylesheet" href="setup.css">
+    <script>
+        if (localStorage.getItem('tamagotchiSetup')) {
+            window.location.replace('index.html');
+        }
+    </script>
+    <script src="setup.js" defer></script>
+</head>
+<body>
+    <main class="setup-card">
+        <h1>Créer votre Tamagotchi</h1>
+        <p>Donnez un nom à votre Tamagotchi et choisissez son modèle.</p>
+
+        <form id="setup-form">
+            <label class="name-label" for="pet-name">Nom du Tamagotchi</label>
+            <input
+                id="pet-name"
+                name="petName"
+                type="text"
+                maxlength="24"
+                placeholder="Par exemple, Lapinou"
+                required
+            >
+            <p id="setup-error" role="alert" hidden>Veuillez entrer un nom.</p>
+
+            <fieldset>
+                <legend>Choisissez votre Tamagotchi</legend>
+                <div class="pet-options">
+                    <label class="pet-option">
+                        <input type="radio" name="species" value="rabbit" required>
+                        <img src="assets/Lapin-joie.png" alt="">
+                        <span>Lapin</span>
+                    </label>
+                    <label class="pet-option">
+                        <input type="radio" name="species" value="frog">
+                        <img src="assets/frog-default.png" alt="">
+                        <span>Grenouille</span>
+                    </label>
+                    <label class="pet-option">
+                        <input type="radio" name="species" value="chick">
+                        <img src="assets/chick-default.png" alt="">
+                        <span>Poussin</span>
+                    </label>
+                    <label class="pet-option">
+                        <input type="radio" name="species" value="cat">
+                        <img src="assets/cat-default.png" alt="">
+                        <span>Chat</span>
+                    </label>
+                    <label class="pet-option">
+                        <input type="radio" name="species" value="dog">
+                        <img src="assets/dog-default.png" alt="">
+                        <span>Chien</span>
+                    </label>
+                    <label class="pet-option">
+                        <input type="radio" name="species" value="otter">
+                        <img src="assets/otter-default.png" alt="">
+                        <span>Loutre</span>
+                    </label>
+                </div>
+                <p class="image-note">Chaque Tamagotchi a ses propres expressions.</p>
+            </fieldset>
+
+            <button type="submit">Créer mon Tamagotchi</button>
+        </form>
+    </main>
+</body>
+</html>

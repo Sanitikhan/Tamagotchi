@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tamagotchi</title>
+    <script>
+        if (!localStorage.getItem('tamagotchiSetup')) {
+            window.location.replace('create.html');
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="tamagotchi-zone">
+        <header class="tamagotchi-header">
+            <h1 class="title-header" id="pet-name">Tamagotchi</h1>
+            <h2 class="exp-header" id="pet-level">Experience: 0</h2>
+        </header>
+        <div class="tamagotchi-layout">
+            <main class="tamagotchi-container">
+                <div class="dialog-zone" id="dialog-zone" aria-live="polite" aria-atomic="true" aria-hidden="true">
+                    <p class="dialog-text"></p>
+                </div>
+                <div class="zone-pet">
+                    <img src="assets/Lapin-joie.png" alt="Tamagotchi">
+                    <span class="sleep-zzz" id="sleep-zzz" aria-hidden="true" hidden>zzz</span>
+                </div>
+                <section class="zone-jauges" aria-label="Tamagotchi needs">
+                    <div class="jauge">
+                        <div
+                            class="custom-stat-bar"
+                            role="progressbar"
+                            aria-label="Happiness"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow="50"
+                        >
+                            <div class="stat-icon icon-happiness" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M13 22h-2v-2h2v2Zm-2-2H9v-2h2v2Zm4 0h-2v-2h2v2Zm-6-2H7v-2h2v2Zm8 0h-2v-2h2v2ZM7 16H5v-2h2v2Zm12 0h-2v-2h2v2ZM5 14H3v-2h2v2Zm16 0h-2v-2h2v2ZM3 12H1V6h2v6Zm20 0h-2V6h2v6ZM13 8h-2V6h2v2ZM5 6H3V4h2v2Zm6 0H9V4h2v2Zm4 0h-2V4h2v2Zm6 0h-2V4h2v2ZM9 4H5V2h4v2Zm10 0h-4V2h4v2Z"/></svg>
+                            </div>
+                            <div class="stat-track">
+                                <div class="stat-bg">
+                                    <div id="happiness-bar" class="stat-fill"></div>
+                                </div>
+                                <span id="happiness-text" class="stat-text">50 / 100</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jauge">
+                        <div
+                            class="custom-stat-bar"
+                            role="progressbar"
+                            aria-label="Energy"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow="50"
+                        >
+                            <div class="stat-icon icon-energy" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M4 13h8v6h2v2h-2v2h-2v-8H2v-4h2v2Zm12 6h-2v-2h2v2Zm2-2h-2v-2h2v2Zm2-2h-2v-2h2v2Zm-6-6h8v4h-2v-2h-8V5h-2V3h2V1h2v8Zm-8 2H4V9h2v2Zm2-2H6V7h2v2Zm2-2H8V5h2v2Z"/></svg>
+                            </div>
+                            <div class="stat-track">
+                                <div class="stat-bg">
+                                    <div id="energy-bar" class="stat-fill"></div>
+                                </div>
+                                <span id="energy-text" class="stat-text">50 / 100</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="jauge">
+                        <div
+                            class="custom-stat-bar"
+                            role="progressbar"
+                            aria-label="Hunger"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            aria-valuenow="50"
+                        >
+                            <div class="stat-icon icon-hunger" aria-hidden="true">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M20 20H2v-2h18v2Zm-4-4H6v-2h10v2Zm4-10h-2v4h2v2h-2v2h-2V6H6v8H4V4h16v2Zm2 4h-2V6h2v4Z"/></svg>
+                            </div>
+                            <div class="stat-track">
+                                <div class="stat-bg">
+                                    <div id="hunger-bar" class="stat-fill"></div>
+                                </div>
+                                <span id="hunger-text" class="stat-text">50 / 100</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+            <div class="zone-panel">
+                <div class="panel-actions">
+                    <button class="action-button" id="btn-feed"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M20 20H2v-2h18v2Zm-4-4H6v-2h10v2Zm4-10h-2v4h2v2h-2v2h-2V6H6v8H4V4h16v2Zm2 4h-2V6h2v4Z"/></svg>Nourrir</button>
+                    <button class="action-button" id="btn-play"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M9 1h6v2H9zM7 3h2v2H7zm8 0h2v2h-2zm-4 2h2v2h-2zm2 2h2v2h-2zM5 5h2v8H5zm12 0h2v8h-2zM7 13h2v2H7zm2 2h2v2H9zm4 4h4v2h-4zm-2-4h4v2h-4zm4-2h2v2h-2zm2 8h2v2h-2zm-6-4h2v2h-2z"/></svg>Jouer</button>
+                    <button class="action-button" id="btn-sleep"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M2 16h10V8h10v2h-8v6h8v-6h2v10h-2v-2H2v2H0V4h2v12Zm7-1H5v-2h4v2Zm-4-2H3V9h2v4Zm6 0H9V9h2v4ZM9 9H5V7h4v2Z"/></svg>Dormir</button>
+                    <button class="action-button" id="btn-heal"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M3 21h2v2H1v-4h2v2Zm6 0H5v-2h4v2Zm-4-2H3v-4h2v4Zm6 0H9v-2h2v2Zm2-2h-2v-2h2v2Zm-6-2H5v-2h2v2Zm8 0h-2v-2h2v2Zm4 0h-2v-2h2v2ZM9 13H7v-2h2v2Zm8 0h-2v-2h2v2Zm4 0h-2v-2h2v2Zm-10-2H9V9h2v2Zm4 0h-2V9h2v2Zm4 0h-2V9h2v2Zm-6-2h-2V7h2v2Zm8 0h-2V7h2v2ZM11 7H9V5h2v2Zm4 0h-2V5h2v2Zm8 0h-2V5h2v2ZM13 5h-2V3h2v2Zm4 0h-2V3h2v2Zm4 0h-2V3h2v2Zm-2-2h-2V1h2v2Z"/></svg>Soigner</button>
+                    <button class="action-button" id="btn-restart" hidden><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24"><path d="M14 22h-4v-2h4v2Zm-4-2H8v-4H4v-2h6v6Zm10-4h-4v4h-2v-6h6v2ZM4 14H2v-4h2v4Zm18 0h-2v-4h2v4Zm-12-4H4V8h4V4h2v6Zm6-2h4v2h-6V4h2v4Zm-2-4h-4V2h4v2Z"/></svg>Recommencer</button>
+                    <button class="action-button" id="btn-history" type="button">Scores passés</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <dialog class="restart-modal" id="restart-modal" aria-labelledby="restart-modal-title">
+        <h2 id="restart-modal-title">Que voulez-vous faire ?</h2>
+        <p>Vous pouvez garder votre Tamagotchi ou en créer un nouveau.</p>
+        <div class="restart-modal-actions">
+            <button class="action-button" id="btn-keep-pet">Garder mon Tamagotchi</button>
+            <button class="action-button" id="btn-new-pet">Créer un nouveau</button>
+            <button class="action-button" id="btn-cancel-restart">Annuler</button>
+        </div>
+    </dialog>
+
+    <dialog class="restart-modal history-modal" id="history-modal" aria-labelledby="history-modal-title">
+        <h2 id="history-modal-title">Scores de vos anciens Tamagotchi</h2>
+        <p id="history-empty">Aucun ancien Tamagotchi pour le moment.</p>
+        <ul class="history-list" id="history-list"></ul>
+        <div class="restart-modal-actions">
+            <button class="action-button" id="btn-close-history" type="button">Fermer</button>
+        </div>
+    </dialog>
+
+    <script src="script.js"></script>
+</body>
+</html>
